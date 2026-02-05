@@ -17,11 +17,11 @@
 
 ## 🎯 Scenario Overview
 
-You are a programmer working for **Babbage Creative**, a software development company. Your team has been assigned to develop a 2D game project using **Python and Pygame**. The game is a space-themed project called **"Shmup"** (Shoot 'em up), though student examples also reference **"Snake"** as an alternative.
+You are a programmer working for **Babbage Creative**, a software development company. Your team has been assigned to develop a 2D game project using **Python and Pygame**. The primary project is a space-themed game called **"Shmup"** (Shoot 'em up), though **"Snake"** is also used as an alternative example in student work.
 
 ### Your Role
 - **Position**: Programmer/Developer at Babbage Creative
-- **Project**: 2D Game Development - "Shmup" (or "Snake")
+- **Project**: 2D Game Development - "Shmup" (space shooter) or "Snake" (classic arcade)
 - **Technology Stack**: Python + Pygame
 - **Task 1 Objective**: Prepare a presentation explaining software program characteristics, tools, and techniques
 - **Audience**: Development team and stakeholders
@@ -154,14 +154,18 @@ You must demonstrate deeper understanding through:
 - ✅ Shows the **game loop** - arrow must loop back from end to start
 - ✅ Specific game logic, not generic "Start → Stop"
 
-**Example from Student Work (Saleh)**:
+**Example from Student Work**:
 ```
 Start → Initialize Game → [Game Running?] 
   ↓ Yes                           ↓ No
-Get Input → Process Movement → Check Collision → [Apple Eaten?]
-  ↓ Yes: Increase Score              ↓ No
+Get Input → Process Movement → Check Collision → [Collision Detected?]
+  ↓ Yes: Update Score/Health         ↓ No
 Update Display → (loop back to "Game Running?") → End
 ```
+
+**Note**: Your specific decision points will vary by game:
+- **Snake**: "Apple Eaten?", "Snake Hit Wall?", "Snake Hit Self?"
+- **Shmup**: "Bullet Hit Asteroid?", "Player Hit Enemy?", "Level Complete?"
 
 **⚠️ Common Mistake**: Creating a flowchart that doesn't loop. If the arrow points straight to "End", it's not a game loop!
 
@@ -321,7 +325,7 @@ You **must** critique your code based on these three categories:
 
 **How to Explain for Level 2 Pass**:
 
-✅ **Excellent Example (from student work)**:
+✅ **Excellent Example**:
 > "The game loop follows the Fetch-Decode-Execute cycle continuously:
 > 1. **Fetch**: The game checks for input events using `pygame.event.get()`, fetching data about key presses or the quit button
 > 2. **Decode**: The game processes this input - if the player pressed the spacebar (KEYDOWN event), the game creates a new bullet object at the player's position and adds it to the bullet list
@@ -427,7 +431,7 @@ Every technical term must be followed by **"In [Your Game], this is used to..."*
 - **Execute**: Draw everything (`screen.blit()`) and refresh display (`pygame.display.flip()`)
 This repeats 60 times per second (controlled by `clock.tick(60)`) creating smooth animation"
 
-**Student Reference**: Look at Saleh's work - he correctly maps Input→Update→Draw to Fetch→Decode→Execute
+**Key Point**: The mapping is Input→Update→Draw which corresponds to Fetch→Decode→Execute
 
 ---
 
@@ -468,7 +472,7 @@ This repeats 60 times per second (controlled by `clock.tick(60)`) creating smoot
    ↓ Yes
 [Get Player Input] (rectangle)
    ↓
-<Collision Detected?> (diamond) → Yes → [Decrease Health] (rectangle)
+<Collision Detected?> (diamond) → Yes → [Update Score/Health] (rectangle)
    ↓ No                                           ↓
 [Update Positions] (rectangle) ←------------------+
    ↓
@@ -477,7 +481,9 @@ This repeats 60 times per second (controlled by `clock.tick(60)`) creating smoot
 (Arrow loops back to "Game Running?" diamond)
 ```
 
-**Student Reference**: See Saleh's flowchart - it shows specific game decisions like "Apple Eaten?" leading to "Increase Score"
+**Game-Specific Decision Examples**:
+- **Snake**: "Apple Eaten?" → "Increase Score & Grow Snake"
+- **Shmup**: "Bullet Hit Asteroid?" → "Destroy Asteroid & Add Points"
 
 ---
 
